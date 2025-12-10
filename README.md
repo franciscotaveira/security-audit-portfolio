@@ -138,13 +138,34 @@ jwt.verify(token, JWT_SECRET, { algorithms: ["HS256"] });
 - [JWT Algorithm Confusion](https://portswigger.net/web-security/jwt/algorithm-confusion)
 - [CWE-798: Use of Hard-coded Credentials](https://cwe.mitre.org/data/definitions/798.html)
 
+## ⚠️ Aviso Legal
+
+> **Este repositório é apenas para demonstração de portfólio.**
+> 
+> O código está protegido por direitos autorais e **NÃO pode ser copiado, redistribuído ou utilizado** sem permissão expressa do autor.
+
+## 💼 Licenciamento Comercial
+
+Interessado em usar este código ou contratar uma auditoria de segurança similar para seu projeto?
+
+📧 **Entre em contato:**
+- GitHub: [@franciscotaveira](https://github.com/franciscotaveira)
+- LinkedIn: [Francisco Taveira](https://linkedin.com/in/franciscotaveira)
+
+### Serviços disponíveis:
+- 🔐 **Auditoria de Segurança** - Análise completa do seu código
+- 📦 **Licença Comercial** - Use este template no seu projeto
+- 🎓 **Consultoria** - Treinamento em segurança para sua equipe
+
 ## 📄 Licença
 
-MIT License - Veja [LICENSE](./LICENSE) para detalhes.
+**Proprietary License - All Rights Reserved**
+
+Veja [LICENSE](./LICENSE) para detalhes completos.
 
 ---
 
 <p align="center">
   <strong>🔒 Desenvolvido como case de segurança</strong><br>
-  <sub>Análise e correções realizadas com auxílio do Antigravity AI</sub>
+  <sub>© 2024 Francisco Taveira - Todos os direitos reservados</sub>
 </p>
