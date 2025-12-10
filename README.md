@@ -1,142 +1,62 @@
-# 🔐 JWT Auth Security Audit
+# 🔐 Security Audit Portfolio - OWASP Top 10
 
-> **Case study**: Análise de segurança completa de um middleware de autenticação JWT vulnerável, com implementação corrigida e testes de exploração.
+> **Portfólio completo** de auditoria de segurança cobrindo as 10 principais vulnerabilidades OWASP com código vulnerável, versão corrigida e testes de exploração.
 
+[![Tests](https://img.shields.io/badge/Tests-40%20passing-brightgreen)](./tests)
+[![OWASP](https://img.shields.io/badge/OWASP-Top%2010-red)](https://owasp.org/Top10/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![Vitest](https://img.shields.io/badge/Tested%20with-Vitest-6E9F18?logo=vitest)](https://vitest.dev/)
-[![Security](https://img.shields.io/badge/Security-Audit-red)](./docs/SECURITY_REPORT.md)
 
-## 📋 Sumário
+## 📊 Cobertura OWASP Top 10
 
-- [Sobre o Projeto](#-sobre-o-projeto)
-- [Vulnerabilidades Identificadas](#-vulnerabilidades-identificadas)
-- [Quick Start](#-quick-start)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Demonstração](#-demonstração)
-- [Correções Implementadas](#-correções-implementadas)
+| # | Vulnerabilidade | Arquivos | Testes |
+|---|----------------|----------|--------|
+| 1 | **Broken Authentication** | `middlewares/auth-*` | 6 ✅ |
+| 2 | **Insecure Deserialization** | `services/user-service-*` | 9 ✅ |
+| 3 | **SQL Injection** | `injection/sql-*` | 3 ✅ |
+| 4 | **XSS (Cross-Site Scripting)** | `xss/xss-*` | 3 ✅ |
+| 5 | **Broken Access Control** | `access-control/*` | 3 ✅ |
+| 6 | **Security Misconfiguration** | `misconfiguration/*` | 3 ✅ |
+| 7 | **Sensitive Data Exposure** | `sensitive-data/*` | 3 ✅ |
+| 8 | **SSRF** | `ssrf/ssrf-*` | 3 ✅ |
+| 9 | **DoS (Rate Limiting)** | `dos/dos-*` | 3 ✅ |
+| 10 | **Vulnerable Dependencies** | `dependencies/*` | 3 ✅ |
 
-## 🎯 Sobre o Projeto
-
-Este repositório documenta uma **auditoria de segurança** realizada em um middleware de autenticação JWT comum em aplicações Node.js/Express. O código original apresentava múltiplas vulnerabilidades críticas que foram identificadas, documentadas e corrigidas.
-
-### Objetivos
-
-1. **Identificar** vulnerabilidades no código original
-2. **Demonstrar** como cada vulnerabilidade pode ser explorada
-3. **Implementar** versão segura seguindo melhores práticas
-4. **Testar** que os exploits são bloqueados pela versão corrigida
-
-## ⚠️ Vulnerabilidades Identificadas
-
-| # | Vulnerabilidade | Severidade | CWE |
-|---|----------------|------------|-----|
-| 1 | Secret hardcoded como fallback | 🔴 Crítica | [CWE-798](https://cwe.mitre.org/data/definitions/798.html) |
-| 2 | Falta de tipagem (any) | 🟠 Alta | [CWE-20](https://cwe.mitre.org/data/definitions/20.html) |
-| 3 | Validação insuficiente de payload | 🟠 Alta | [CWE-20](https://cwe.mitre.org/data/definitions/20.html) |
-| 4 | Privilege escalation via token | 🔴 Crítica | [CWE-269](https://cwe.mitre.org/data/definitions/269.html) |
-| 5 | Information leakage em logs | 🟡 Média | [CWE-532](https://cwe.mitre.org/data/definitions/532.html) |
-| 6 | Falta de proteção contra algorithm confusion | 🟠 Alta | [CWE-327](https://cwe.mitre.org/data/definitions/327.html) |
+**Total: 40 testes demonstrando exploits e correções**
 
 ## 🚀 Quick Start
 
 ```bash
-# Clone o repositório
-git clone https://github.com/SEU_USUARIO/jwt-auth-security-audit.git
-
-# Instale as dependências
+git clone https://github.com/SEU_USUARIO/security-audit-portfolio.git
+cd security-audit-portfolio
 npm install
-
-# Execute os testes de segurança
 npm test
 ```
 
-### Saída esperada:
+## 📁 Estrutura
 
 ```
-✓ VULN: Fallback Secret Attack
-  ✓ Atacante pode criar token válido com secret '123'
-✓ VULN: Privilege Escalation  
-  ✓ Usuário comum pode se elevar a admin
-✓ VULN: Payload Structure Confusion
-  ✓ Código aceita qualquer estrutura de payload
-✓ SECURE: Proteções Implementadas
-  ✓ Resumo das proteções na versão segura
+src/
+├── middlewares/          # Case 1: JWT Auth
+├── services/             # Case 2: User Service
+├── injection/            # Case 3: SQL Injection
+├── xss/                  # Case 4: XSS
+├── access-control/       # Case 5: Access Control
+├── misconfiguration/     # Case 6: Config
+├── sensitive-data/       # Case 7: Data Exposure
+├── ssrf/                 # Case 8: SSRF
+├── dos/                  # Case 9: Rate Limiting
+└── dependencies/         # Case 10: Dependencies
 
-Test Files  1 passed (1)
-     Tests  6 passed (6)
+tests/
+├── auth-exploit.test.ts
+├── user-service-exploit.test.ts
+└── owasp-top10-exploit.test.ts
+
+docs/
+├── SECURITY_REPORT.md
+├── PROPOSAL_TEMPLATE.md
+└── OWASP_CHECKLIST.md
 ```
-
-## 📁 Estrutura do Projeto
-
-```
-├── src/
-│   ├── middlewares/
-│   │   ├── auth-vulnerable.ts    # ❌ Código original com vulnerabilidades
-│   │   └── auth-secure.ts        # ✅ Implementação corrigida
-│   └── utils/
-│       └── jwt.ts                # Utilitários JWT seguros
-├── tests/
-│   └── auth-exploit.test.ts      # Testes de exploração
-├── docs/
-│   └── SECURITY_REPORT.md        # Relatório detalhado
-└── README.md
-```
-
-## 🎬 Demonstração
-
-### Código Vulnerável (Original)
-
-```typescript
-// ❌ Fallback perigoso - qualquer um pode forjar tokens
-jwt.verify(token, process.env.SECRET || "123");
-
-// ❌ Aceita qualquer estrutura
-req.user = data.user || data || {};
-
-// ❌ Privilege escalation trivial
-if (req.user.role === 'admin') {
-    req.isAdmin = true;
-}
-```
-
-### Código Seguro (Corrigido)
-
-```typescript
-// ✅ Fail-fast se não configurado
-function getJwtSecret(): string {
-  const secret = process.env.JWT_SECRET;
-  if (!secret) throw new Error("JWT_SECRET not configured");
-  if (secret.length < 32) throw new Error("Secret too short");
-  return secret;
-}
-
-// ✅ Validação com Zod
-const JwtPayloadSchema = z.object({
-  sub: z.string().uuid(),
-  email: z.string().email(),
-  role: z.enum(["user", "admin", "moderator"]),
-});
-
-// ✅ Força algoritmo específico
-jwt.verify(token, JWT_SECRET, { algorithms: ["HS256"] });
-```
-
-## ✅ Correções Implementadas
-
-| Vulnerabilidade | Correção |
-|----------------|----------|
-| Fallback secret | Fail-fast + mínimo 32 caracteres |
-| Tipagem any | `AuthenticatedRequest` interface |
-| Payload inseguro | Schema Zod com campos obrigatórios |
-| Privilege escalation | Enum Zod + middleware `requireAdmin` |
-| Information leakage | Logging estruturado sem stack traces |
-| Algorithm confusion | `algorithms: ['HS256']` forçado |
-
-## 📚 Referências
-
-- [OWASP JWT Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html)
-- [JWT Algorithm Confusion](https://portswigger.net/web-security/jwt/algorithm-confusion)
-- [CWE-798: Use of Hard-coded Credentials](https://cwe.mitre.org/data/definitions/798.html)
 
 ## ⚠️ Aviso Legal
 
@@ -146,26 +66,19 @@ jwt.verify(token, JWT_SECRET, { algorithms: ["HS256"] });
 
 ## 💼 Licenciamento Comercial
 
-Interessado em usar este código ou contratar uma auditoria de segurança similar para seu projeto?
+Interessado em usar este código ou contratar uma auditoria de segurança?
 
 📧 **Entre em contato:**
 - GitHub: [@franciscotaveira](https://github.com/franciscotaveira)
 - LinkedIn: [Francisco Taveira](https://linkedin.com/in/franciscotaveira)
 
 ### Serviços disponíveis:
-- 🔐 **Auditoria de Segurança** - Análise completa do seu código
+- 🔐 **Auditoria de Segurança** - R$ 1.500 - R$ 8.000
 - 📦 **Licença Comercial** - Use este template no seu projeto
-- 🎓 **Consultoria** - Treinamento em segurança para sua equipe
+- 🎓 **Consultoria/Treinamento** - Segurança para sua equipe
 
 ## 📄 Licença
 
 **Proprietary License - All Rights Reserved**
 
-Veja [LICENSE](./LICENSE) para detalhes completos.
-
----
-
-<p align="center">
-  <strong>🔒 Desenvolvido como case de segurança</strong><br>
-  <sub>© 2024 Francisco Taveira - Todos os direitos reservados</sub>
-</p>
+© 2024 Francisco Taveira
