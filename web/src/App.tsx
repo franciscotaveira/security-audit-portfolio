@@ -41,7 +41,7 @@ interface AnalysisResult {
 // const FREE_LIMIT_ANALYSES = 5;
 // const FREE_LIMIT_CHARS = 1000;
 // const PRO_PRICE = 29;
-const DONATION_LINK = 'https://buy.stripe.com/test_8x29AU5sgccu8LM9skfUQ01'; // Replace with your real donation link
+const DONATION_LINK = 'https://buy.stripe.com/eVq5kE7Ch4M95680TUbbG01'; // Real donation link
 
 // ============================================================================
 // MODES & PROMPTS
