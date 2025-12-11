@@ -46,35 +46,41 @@ const DONATION_LINK = 'https://buy.stripe.com/eVq5kE7Ch4M95680TUbbG01'; // Real 
 // ============================================================================
 // MODES & PROMPTS
 // ============================================================================
-const MODES: Record<AnalysisMode, { label: string; icon: string; prompt: string }> = {
+const MODES: Record<AnalysisMode, { label: string; icon: string; description: string; prompt: string }> = {
   security: {
-    label: 'Elite Security Officer',
+    label: 'Security Officer',
     icon: '👮‍♂️',
+    description: 'Finds vulnerabilities: SQL Injection, XSS, Auth flaws',
     prompt: 'You are an Elite Cybersecurity Officer (NSA-Level). Execute a deep "Chain of Thought" analysis: 1. Map the entire data flow (inputs/outputs). 2. Identify obscure attack vectors (Race Conditions, Prototype Pollution, Timing Attacks). 3. Mentally simulate the intrusion. 4. Generate the bulletproof code. Return JSON: { "analysis": "Detailed technical report...", "fixedCode": "Secure code" }.'
   },
   performance: {
     label: 'Performance Guru',
     icon: '⚡',
+    description: 'Optimizes speed: O(n²) → O(n), memory leaks, re-renders',
     prompt: 'You are a High Performance Engineer (HFT - High Frequency Trading). Your goal is zero latency. 1. Identify Big O complexity. 2. Find unnecessary memory allocations. 3. Eliminate re-renders. 4. Rewrite for maximum speed. Return JSON: { "analysis": "Bottleneck analysis...", "fixedCode": "Optimized code" }.'
   },
   'clean-code': {
-    label: 'Clean Code Arch',
+    label: 'Clean Code',
     icon: '🧹',
+    description: 'Improves readability: SOLID, DRY, better naming',
     prompt: 'You are the embodiment of Clean Code. 1. Analyze cognitive readability. 2. Identify SOLID and DRY violations. 3. Simplify logic so a child could understand. 4. Apply perfect semantic naming. Return JSON: { "analysis": "Design critique...", "fixedCode": "Code artwork" }.'
   },
   qa: {
-    label: 'Test Automation AI',
+    label: 'Test Writer',
     icon: '🧪',
+    description: 'Generates tests: Jest/Vitest suites with edge cases',
     prompt: 'You are an AI specialized in breaking code. 1. Analyze all execution paths (branches). 2. Identify extreme Edge Cases (null, overflow, wrong types). 3. Write a test suite (Jest/Vitest) that guarantees 100% real coverage. Return JSON: { "analysis": "Coverage strategy...", "fixedCode": "Complete test suite" }.'
   },
   architect: {
-    label: 'Principal Architect',
+    label: 'Architect',
     icon: '🏛️',
+    description: 'Reviews structure: Design Patterns, scalability, coupling',
     prompt: 'You are a Principal Architect at a Big Tech. 1. Evaluate horizontal scalability and maintainability. 2. Critique coupling and cohesion. 3. Propose Enterprise Design Patterns (Adapter, Factory, Observer) if applicable. Return JSON: { "analysis": "Architectural review...", "fixedCode": "Refactored structure" }.'
   },
   docs: {
-    label: 'Doc Master',
+    label: 'Doc Writer',
     icon: '📚',
+    description: 'Adds documentation: JSDoc, examples, README',
     prompt: 'You are a Senior Technical Writer. Generate world-class documentation. 1. Create an executive summary. 2. Generate detailed JSDoc/TSDoc for every signature. 3. Create practical usage examples. Return JSON: { "analysis": "Overview...", "fixedCode": "100% documented code" }.'
   }
 };
@@ -286,7 +292,12 @@ function IDE() {
           <div className="ide-toolbar">
             <div className="modes">
               {(Object.keys(MODES) as AnalysisMode[]).map((m) => (
-                <button key={m} className={`mode-pill ${mode === m ? 'active' : ''}`} onClick={() => setMode(m)}>
+                <button
+                  key={m}
+                  className={`mode-pill ${mode === m ? 'active' : ''}`}
+                  onClick={() => setMode(m)}
+                  title={MODES[m].description}
+                >
                   {MODES[m].icon} {MODES[m].label}
                 </button>
               ))}
@@ -296,6 +307,10 @@ function IDE() {
                 {isAnalyzing ? 'Thinking...' : '▶ Run Analysis'}
               </button>
             </div>
+          </div>
+
+          <div style={{ padding: '0.5rem 1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '8px', marginBottom: '1rem', fontSize: '0.85rem', color: '#888' }}>
+            <strong style={{ color: '#fff' }}>{MODES[mode].icon} {MODES[mode].label}:</strong> {MODES[mode].description}
           </div>
 
           <div className="editor-wrapper">
