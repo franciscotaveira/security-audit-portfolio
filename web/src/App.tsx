@@ -7,7 +7,7 @@ import './landing.css';
 // ============================================================================
 // CONFIG
 // ============================================================================
-// Substitua pela sua Publishable Key do Clerk Dashboard
+// Replace with your Clerk Publishable Key from the Dashboard
 const CLERK_PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY || "pk_test_ExemploDeChavePublicaDoClerkAqui";
 
 if (!import.meta.env.VITE_CLERK_PUBLISHABLE_KEY) {
@@ -221,7 +221,7 @@ function IDE() {
   }, [monaco]);
 
   const handleAnalyze = async () => {
-    if (!code.trim() || code.includes('// Cole seu código')) return;
+    if (!code.trim() || code.includes('// Paste your code')) return;
     setIsAnalyzing(true);
     setResult(null);
     setActiveTab('editor');
@@ -348,13 +348,14 @@ function IDE() {
       {showUpgrade && (
         <div className="modal-bg" onClick={() => setShowUpgrade(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
-            <h2>💝 Support the Project</h2>
-            <p style={{ color: '#888', margin: '1rem 0' }}>
-              Security Brain is open for everyone.
-              <br />If this tool helps you, consider supporting its development!
+            <h2>💝 Support This Project</h2>
+            <p style={{ color: '#888', margin: '1rem 0', lineHeight: '1.6' }}>
+              If this tool helped you, consider contributing to support the development of more open-source projects like this one.
+              <br /><br />
+              <strong>Every $1 helps!</strong> ☕
             </p>
             <button className="btn-primary" onClick={() => window.open(`${DONATION_LINK}?prefilled_email=${user?.primaryEmailAddress?.emailAddress}`, '_blank')}>
-              Donate & Support 🚀
+              Contribute $1 🚀
             </button>
             <button className="close" onClick={() => setShowUpgrade(false)}>✕</button>
           </div>
