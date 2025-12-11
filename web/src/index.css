@@ -1,0 +1,319 @@
+/* Security Brain IDE - Dark Theme */
+:root {
+  --bg: #0d0d0d;
+  --bg-panel: #1e1e1e;
+  /* Match VS Code Dark */
+  --border: #333;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --success: #10b981;
+  --text: #fff;
+  --text-muted: #888;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+  /* App like feel */
+}
+
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 50px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: var(--bg-panel);
+}
+
+.brand {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.beta-tag {
+  font-size: 0.6rem;
+  background: var(--accent);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.header-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Main IDE Layout */
+.main-ide {
+  flex: 1;
+  overflow: hidden;
+  padding: 1rem;
+}
+
+.ide-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+/* Toolbar */
+.ide-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-panel);
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.modes {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+
+.mode-pill {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.mode-pill:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.mode-pill.active {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.limit-info {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.btn-run {
+  background: var(--success);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-run:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-run:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Editor */
+.editor-wrapper {
+  flex: 2;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.diff-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: #111;
+}
+
+.diff-tabs button {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-right: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.diff-tabs button.active {
+  background: var(--bg-panel);
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+}
+
+.diff-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.diff-actions {
+  padding: 0.5rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  background: #252526;
+}
+
+.btn-apply {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+/* Analysis Panel */
+.analysis-panel {
+  flex: 1;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-y: auto;
+  position: relative;
+  min-height: 200px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+.score-badge {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.score-badge.good {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success);
+}
+
+.score-badge.bad {
+  background: rgba(239, 68, 68, 0.2);
+  color: var(--danger);
+}
+
+.ai-markdown {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+  white-space: pre-wrap;
+}
+
+.promo-blur {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(transparent, var(--bg-panel));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Utils */
+.btn-icon,
+.btn-text {
+  background: none;
+  border: 1px solid #333;
+  color: #888;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.modal {
+  background: #1e1e1e;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  width: 400px;
+  border: 1px solid #333;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8rem;
+  background: #111;
+  border: 1px solid #333;
+  color: white;
+  margin: 1rem 0;
+}
+
+.close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+}

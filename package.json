@@ -1,14 +1,32 @@
 {
-  "name": "auth-security-audit",
-  "version": "1.0.0",
-  "description": "Security audit and improved implementation of JWT auth middleware",
+  "name": "solar-orion",
+  "version": "2.0.0",
+  "description": "Complete OWASP Top 10 Security Audit Portfolio with Interactive Web Demo",
   "type": "module",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "generate": "npx ts-node scripts/generate-cases.ts"
+    "generate": "npx ts-node scripts/generate-cases.ts",
+    "dev": "cd web && npm run dev",
+    "build": "cd web && npm run build",
+    "start": "cd web && npm run preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/franciscotaveira/security-audit-portfolio"
+  },
+  "keywords": [
+    "security",
+    "owasp",
+    "audit",
+    "vulnerabilities",
+    "penetration-testing",
+    "cybersecurity"
+  ],
+  "author": "Francisco Taveira",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.5",
@@ -21,5 +39,8 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
     "zod": "^3.22.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
